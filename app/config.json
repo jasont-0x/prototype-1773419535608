@@ -1,0 +1,5 @@
+{
+  "serviceName": "Apply for teacher training",
+  "serviceUrl": "/start",
+  "useAuth": false
+}

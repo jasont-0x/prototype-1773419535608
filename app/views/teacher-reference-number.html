@@ -1,0 +1,36 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "What is your teacher reference number?" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({ text: "Back", href: "javascript:history.back()" }) }}
+
+    {% if errors and errors["teacher-reference-number"] %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [{ text: errors["teacher-reference-number"], href: "#teacher-reference-number" }]
+    }) }}
+    {% endif %}
+
+    <form method="post" novalidate>
+    {{ govukInput({
+      id: "teacher-reference-number",
+      name: "teacher-reference-number",
+      label: {
+        text: "What is your teacher reference number?",
+        isPageHeading: true,
+        classes: "govuk-label--l"
+      },
+      hint: { text: "This is 7 digits, for example 1234567." },
+      errorMessage: errors["teacher-reference-number"] if errors else null,
+      value: data["teacher-reference-number"]
+    }) }}
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

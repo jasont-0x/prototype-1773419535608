@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "When would you prefer to complete the training?" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({ text: "Back", href: "javascript:history.back()" }) }}
+
+    {% if errors and errors["preferred-month"] %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [{ text: errors["preferred-month"], href: "#preferred-month" }]
+    }) }}
+    {% endif %}
+
+    <form method="post" novalidate>
+    {{ govukRadios({
+      name: "preferred-month",
+      fieldset: {
+        legend: {
+          text: "When would you prefer to complete the training?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: { text: "Training courses run monthly." },
+      errorMessage: errors["preferred-month"] if errors else null,
+      value: data["preferred-month"],
+      items: [
+        { value: "january-2024", text: "January 2024" },
+        { value: "february-2024", text: "February 2024" },
+        { value: "march-2024", text: "March 2024" },
+        { value: "april-2024", text: "April 2024" }
+      ]
+    }) }}
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

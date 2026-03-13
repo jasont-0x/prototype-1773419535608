@@ -1,0 +1,24 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Apply for teacher training" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Apply for teacher training</h1>
+    <p class="govuk-body">Use this service to apply for mandatory teacher training courses.</p>
+    <p class="govuk-body">You will need:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your teacher reference number</li>
+      <li>details of your current school</li>
+      <li>your preferred training dates</li>
+    </ul>
+    <p class="govuk-body">It takes around <strong>5 minutes</strong> to complete.</p>
+    {{ govukButton({
+      text: "Start now",
+      href: "/teacher-status",
+      isStartButton: true
+    }) }}
+  </div>
+</div>
+{% endblock %}

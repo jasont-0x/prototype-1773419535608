@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Check your answers before sending" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({ text: "Back", href: "javascript:history.back()" }) }}
+
+    <h1 class="govuk-heading-xl">Check your answers before sending</h1>
+
+    {{ govukSummaryList({
+      rows: [
+      {
+        key: { text: "Are you currently employed as a qualified teacher?" },
+        value: { text: data["teacher-status"] if data["teacher-status"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/teacher-status",
+            text: "Change",
+            visuallyHiddenText: "are you currently employed as a qualified teacher?"
+          }]
+        }
+      },
+      {
+        key: { text: "What is your teacher reference number?" },
+        value: { text: data["teacher-reference-number"] if data["teacher-reference-number"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/teacher-reference-number",
+            text: "Change",
+            visuallyHiddenText: "what is your teacher reference number?"
+          }]
+        }
+      },
+      {
+        key: { text: "Which training do you need to complete?" },
+        value: { text: data["training-type"] if data["training-type"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/training-type",
+            text: "Change",
+            visuallyHiddenText: "which training do you need to complete?"
+          }]
+        }
+      },
+      {
+        key: { text: "What is the name of your school?" },
+        value: { text: data["school-name"] if data["school-name"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/school-name",
+            text: "Change",
+            visuallyHiddenText: "what is the name of your school?"
+          }]
+        }
+      },
+      {
+        key: { text: "When would you prefer to complete the training?" },
+        value: { text: data["preferred-month"] if data["preferred-month"] else "Not answered" },
+        actions: {
+          items: [{
+            href: "/preferred-month",
+            text: "Change",
+            visuallyHiddenText: "when would you prefer to complete the training?"
+          }]
+        }
+      }
+      ]
+    }) }}
+
+    <form method="post" novalidate>
+      {{ govukButton({ text: "Confirm and send" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

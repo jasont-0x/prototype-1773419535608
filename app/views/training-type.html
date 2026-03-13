@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Which training do you need to complete?" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({ text: "Back", href: "javascript:history.back()" }) }}
+
+    {% if errors and errors["training-type"] %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [{ text: errors["training-type"], href: "#training-type" }]
+    }) }}
+    {% endif %}
+
+    <form method="post" novalidate>
+    {{ govukRadios({
+      name: "training-type",
+      fieldset: {
+        legend: {
+          text: "Which training do you need to complete?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: { text: "Choose the training you have been asked to complete." },
+      errorMessage: errors["training-type"] if errors else null,
+      value: data["training-type"],
+      items: [
+        { value: "safeguarding-and-child-protection", text: "Safeguarding and child protection" },
+        { value: "special-educational-needs", text: "Special educational needs" },
+        { value: "behaviour-management", text: "Behaviour management" },
+        { value: "mental-health-awareness", text: "Mental health awareness" }
+      ]
+    }) }}
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
